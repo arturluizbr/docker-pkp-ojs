@@ -9,6 +9,7 @@ RUN apt-get update \
 # Cloning and Cleaning OJS and PKP-LIB git repositories
 RUN apt-get install git -y \
     && git config --global url.https://.insteadOf git:// \
+    && rm -fr /var/www/html/* \
     && git clone -v --recursive --progress https://github.com/arturluizbr/ojs.git /var/www/html \
     && cd /var/www/html/lib/pkp \
     && curl -sS https://getcomposer.org/installer | php \
