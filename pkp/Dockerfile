@@ -22,8 +22,5 @@ RUN apt-get install git -y \
 
 # Configuring OJS
 RUN cp config.TEMPLATE.inc.php config.inc.php \
-    && chmod ugo+rw config.inc.php \
-    && chmod -R ugo+rw public/ \
-    && chmod -R ugo+rw cache/ \
     && mkdir -p /var/www/files/ \
-    && chmod -R ugo+rw /var/www/files/
+    && chown -R www-data:www-data /var/www/ \
