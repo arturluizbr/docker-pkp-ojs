@@ -17,7 +17,8 @@ RUN apt-get install git -y \
     && cd /var/www/html \
     && find . | grep .git | xargs rm -rf \
     && apt-get remove git -y \
-    && apt-get autoremove -y
+    && apt-get autoremove -y \
+    && apt-get clean -y
 
 # Configuring OJS
 RUN cp config.TEMPLATE.inc.php config.inc.php \
