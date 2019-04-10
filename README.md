@@ -25,7 +25,7 @@ Then your service will be available on [```http://localhost:8181/```](http://loc
 version: "3.6"
 services:
   ojs:
-    build: .
+    image: arturluizbr/pkp-ojs:latest
     ports: 
       - 8181:80
     environment: 
