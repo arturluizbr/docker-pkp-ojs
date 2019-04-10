@@ -1,10 +1,12 @@
 
 ARG tag_name="ojs-3_1_1-4"
+ARG repo_url="https://github.com/pkp/ojs.git"
 
 FROM alpine:latest AS CLONE_CODE
 ARG tag_name
+ARG repo_url
 RUN apk add --update-cache --no-cache git
-RUN git clone --progress -b "${tag_name}" --single-branch --depth 1 --recurse-submodules -j 4 https://github.com/pkp/ojs.git /app
+RUN git clone --progress -b "${tag_name}" --single-branch --depth 1 --recurse-submodules -j 4 ${repo_url} /app
 
 FROM composer:1.8 AS BUILD_COMPOSER
 COPY --from=CLONE_CODE /app/ /app/

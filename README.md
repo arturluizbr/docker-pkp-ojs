@@ -1,10 +1,26 @@
-# Tags
-**TO DO**
+# OJS - 
+Open Journal Systems (OJS) is a journal management and publishing system that has been developed by the Public Knowledge Project through its federally funded efforts to expand and improve access to research.
 
-# Run
+Check out its [creators](https://pkp.sfu.ca) and its official [website](https://pkp.sfu.ca/ojs).
+
+## Tags
+- [latest](Dockerfile) - Tag 'ojs-3_1_1-4' of OJS repo
+
+## Quick Run
+Available options to quickly run your instance of OJS service.
+
 ## Docker Compose
-Create a *docker-compose.yml* file and run ```docker-compose up```.
-```dockerfile
+For this method you'll need to have docker-compose installed on you system. Check [here](https://docs.docker.com/compose/install/) how to install docker-compose.
+
+Steps:
+- Create a folder named OJS or something else you like;
+- Enter that folder you created;
+- Create a *docker-compose.yml* file with contents below;
+- (GUI Only) Open Terminal in the actual path;
+- Run ```docker-compose up```.
+
+Then your service will be available on [```http://localhost:8181/```](http://localhost:8181/).
+```yml
 # docker-compose.yml
 version: "3.6"
 services:
@@ -13,11 +29,11 @@ services:
     ports: 
       - 8181:80
     environment: 
-      - PKP_DATABASE_DRIVER=mysqli
-      - PKP_DATABASE_HOST=mysql
-      - PKP_DATABASE_USERNAME=ojs
-      - PKP_DATABASE_PASSWORD=ojs
-      - PKP_DATABASE_NAME=ojs
+      -- PKP_DATABASE_DRIVER: #TODO enviroment description=mysqli
+      -- PKP_DATABASE_HOST: #TODO enviroment description=mysql
+      -- PKP_DATABASE_USERNAME: #TODO enviroment description=ojs
+      -- PKP_DATABASE_PASSWORD: #TODO enviroment description=ojs
+      -- PKP_DATABASE_NAME: #TODO enviroment description=ojs
   mysql:
     image: mysql:5.7
     volumes:
@@ -27,19 +43,24 @@ services:
       - MYSQL_USER=ojs
       - MYSQL_PASSWORD=ojs
       - MYSQL_ROOT_PASSWORD=root
-  pma:
-    image: phpmyadmin/phpmyadmin:4.8
-    ports: 
-      - 8182:80
-    environment: 
-      - PMA_HOST=mysql
 
 volumes: 
   db_data:
 ```
 
-## Docker Command
-Run the following commands:
-```bash
-# to do
-```
+## Environment Variables
+
+Basically all variables inside config.inc.php can be override with its enviroment verion.
+
+Check the full lisk of environment variables and their description [here](ojs.config.env).
+
+## Upgrading
+
+Warning: **THIS PROCEDURE WAS NOT TESTED**
+
+Steps:
+- Backup and/or restore your database accoding to db image you use;
+- Configure your docker-compose file to use the newest version of this image;
+- Recreate your OJS container with newest version (```docker-compose up -d --force-recreate```);
+- Enter the terminal mode of your container (```docker-compose exec ojs bash```);
+- Run the official upgrade tool from OJS (```php -c $PHP_INI_DIR tools/upgrade.php upgrade```);
