@@ -64,3 +64,12 @@ Steps:
 - Recreate your OJS container with newest version (```docker-compose up -d --force-recreate```);
 - Enter the terminal mode of your container (```docker-compose exec ojs bash```);
 - Run the official upgrade tool from OJS (```php -c $PHP_INI_DIR tools/upgrade.php upgrade```);
+
+## Using your own version of OJS
+
+To use your custom version of OJS, update the following ARGs when buiding this image.
+
+Steps:
+- Clone/Fork this repository to your workspace.
+- (Docker variant) Build the image using custom ARGs (```docker build --build-arg repo_url=[YOUR-REPO] --build-arg tag_name=[YOUR_TAG_OR_BRANCH] -t user/ojs:latest .```);
+- (Docker Compose variant) Update ARGs in your [```docker-compose.yml```](docker-compose.yml) file and build the image using ```docker-compose build```.

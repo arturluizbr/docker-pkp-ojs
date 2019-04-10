@@ -1,7 +1,11 @@
 version: "3.6"
 services:
   ojs:
-    build: .
+    build:
+      context: .
+      args:
+        tag_name: "ojs-3_1_1-4"
+        repo_url: "https://github.com/pkp/ojs.git"
     ports: 
       - 8181:80
     environment: 
