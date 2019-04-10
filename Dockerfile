@@ -21,9 +21,7 @@ WORKDIR /app
 RUN npm install
 RUN npm run build
 RUN find . | grep .git | xargs rm -rf
-COPY config-creator.php /app/
-COPY entrypoint.sh /app/
-COPY ojs.config.env /app/
+COPY files/* /app/
 
 FROM php:7.3-apache
 ENV APP_DIR=/var/www/html
@@ -33,9 +31,7 @@ RUN mv ${APP_DIR}/config-creator.php /bin/config-creator \
  && chmod +x /bin/config-creator \
  && chmod +x /entrypoint.sh \
  && mv ${APP_DIR}/ojs.config.env /etc/ojs.config.env \
- && apt-get update \
  && docker-php-ext-install mysqli \
- && apt-get clean \
  && echo "error_log=/dev/stderr" > $PHP_INI_DIR/conf.d/error.ini
 
 ENTRYPOINT [ "/entrypoint.sh" ]
