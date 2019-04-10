@@ -54,6 +54,14 @@ Basically all variables inside config.inc.php can be override with its enviromen
 
 Check the full lisk of environment variables and their description [here](ojs.config.env).
 
+## Volumes
+
+TODO
+
+## OJS Tools
+
+TODO
+
 ## Upgrading
 
 Warning: **THIS PROCEDURE WAS NOT TESTED**

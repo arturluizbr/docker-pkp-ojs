@@ -27,10 +27,12 @@ FROM php:7.3-apache
 ENV APP_DIR=/var/www/html
 COPY --from=BUILD_NODE --chown=www-data:www-data /app/ ${APP_DIR}
 RUN mv ${APP_DIR}/config-creator.php /bin/config-creator \
+ && mv ${APP_DIR}/pkp.sh /bin/pkp \
  && mv ${APP_DIR}/entrypoint.sh /entrypoint.sh \
- && chmod +x /bin/config-creator \
- && chmod +x /entrypoint.sh \
  && mv ${APP_DIR}/ojs.config.env /etc/ojs.config.env \
+ && chmod +x /bin/config-creator \
+ && chmod +x /bin/pkp \
+ && chmod +x /entrypoint.sh \
  && docker-php-ext-install mysqli \
  && echo "error_log=/dev/stderr" > $PHP_INI_DIR/conf.d/error.ini
 
