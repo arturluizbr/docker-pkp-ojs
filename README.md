@@ -29,11 +29,11 @@ services:
     ports: 
       - 8181:80
     environment: 
-      -- PKP_DATABASE_DRIVER: #TODO enviroment description=mysqli
-      -- PKP_DATABASE_HOST: #TODO enviroment description=mysql
-      -- PKP_DATABASE_USERNAME: #TODO enviroment description=ojs
-      -- PKP_DATABASE_PASSWORD: #TODO enviroment description=ojs
-      -- PKP_DATABASE_NAME: #TODO enviroment description=ojs
+      - PKP_DATABASE_DRIVER=mysqli
+      - PKP_DATABASE_HOST=mysql
+      - PKP_DATABASE_USERNAME=ojs
+      - PKP_DATABASE_PASSWORD=ojs
+      - PKP_DATABASE_NAME=ojs
   mysql:
     image: mysql:5.7
     volumes:
