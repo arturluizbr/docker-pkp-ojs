@@ -1,5 +1,5 @@
 
-ARG tag_name="ojs-3_1_1-4"
+ARG tag_name="3_1_2-0"
 ARG repo_url="https://github.com/pkp/ojs.git"
 
 FROM alpine:latest AS CLONE_CODE
