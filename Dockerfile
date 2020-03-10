@@ -2,11 +2,11 @@ FROM php:7.3-apache
 
 ENV APP_DIR=/var/www/html \
     TMP_DIR=/tmp
-ARG BINARY=http://pkp.sfu.ca/ojs/download/ojs-3.1.2.tar.gz
+ARG BINARY=http://pkp.sfu.ca/ojs/download/ojs-3.2.0.tar.gz
 
 ADD ${BINARY} ${TMP_DIR}
 WORKDIR ${APP_DIR}
-RUN tar xfz ${TMP_DIR}/ojs*.tar.gz --strip 1 \
+RUN tar xf ${TMP_DIR}/ojs*.tar.gz --strip 1 \
     && chown -R www-data:www-data ${APP_DIR}/* \
     && rm -Rf ${TMP_DIR}/ojs*
 
