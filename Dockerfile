@@ -19,7 +19,7 @@ RUN mv ${TMP_DIR}/config-creator.php /bin/config-creator \
     && chmod +x /bin/config-creator \
     && chmod +x /bin/pkp \
     && chmod +x /entrypoint.sh \
-    && docker-php-ext-install mysqli pdo pdo_mysql \
+    && docker-php-ext-install mysqli pdo pdo_mysql gettext \
     && echo "error_log=/dev/stderr" > $PHP_INI_DIR/conf.d/error.ini
 
 ENTRYPOINT [ "/entrypoint.sh" ]
