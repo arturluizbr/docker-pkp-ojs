@@ -23,6 +23,17 @@ foreach($_ENV as $k => $v) {
     }
 }
 
+# Reads config settings from Docker secrets
+# NB: These values provided here will override the environment variables set above
+foreach (glob("/run/secrets/PKP*") as $filename) {
+    if(preg_match("/^PKP\_([0-9A-Za-z]+)\_(.+)$/", basename($filename), $m)===1) {
+        $m = array_map(function($v) {
+            return strtolower($v);
+        }, $m);
+        $config[$m[1]][$m[2]] = file_get_contents($filename);
+    }
+}
+
 # Creates config template based on sorted enviroment variable
 $config_text = <<<CONFIG
 <?php exit(); // DO NOT DELETE ?>\n\n
