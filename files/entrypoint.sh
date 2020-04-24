@@ -13,11 +13,9 @@ config-creator > ${APP_DIR}/config.inc.php
 ln -s ${PHP_INI_DIR}/php.ini-production ${PHP_INI_DIR}/php.ini
 
 # When running behind a SSL-terminating reverse proxy
-# some hacking is necessary to get SSL to work
-# see https://forum.pkp.sfu.ca/t/ojs-3-behind-reverse-proxy-how-to-achieve/25055/9
-# Simply set $HACK_BASE_URL to some value and it will be fixed here
-if [ -n "$HACK_BASE_URL" ]; then
-    sed -i 's+function getBaseUrl($allowProtocolRelative = false)+function getBaseUrl($allowProtocolRelative = true)+' ${APP_DIR}/lib/pkp/classes/core/PKPRequest.inc.php
-fi
+# OJS doesn't get the protocol right by itself
+# We need to provide the 'HTTPS' key in the PHP $_SERVER variable
+# by tweaking the apache server running in the container
+echo 'SetEnvIf X-Forwarded-Proto "^https$" HTTPS=on' > /etc/apache2/conf-enabled/https-on.conf
 
 exec "$@"
