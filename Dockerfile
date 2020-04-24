@@ -2,7 +2,7 @@ FROM php:7.3-apache
 
 ENV APP_DIR=/var/www/html \
     TMP_DIR=/tmp
-ARG BINARY=http://pkp.sfu.ca/ojs/download/ojs-3.2.0-1.tar.gz
+ARG BINARY=http://pkp.sfu.ca/ojs/download/ojs-3.2.0-2.tar.gz
 
 ENV PHP_POST_MAX_SIZE=16M \
     PHP_UPLOAD_MAX_FILESIZE=10M
