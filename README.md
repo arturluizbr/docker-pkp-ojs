@@ -50,7 +50,7 @@ volumes:
 
 ## Environment Variables
 
-Basically all variables inside config.inc.php can be override with its enviroment verion.
+Basically all variables inside config.inc.php can be override with its environment version.
 
 Check the full lisk of environment variables and their description [here](ojs.config.env).
 
