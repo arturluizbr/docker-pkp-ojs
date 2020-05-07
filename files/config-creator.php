@@ -8,13 +8,13 @@
  */
 
 
-# Sorts enviroment variables based on regex
+# Sorts environment variables based on regex
 $config = [];
 foreach($_ENV as $k => $v) {
-    # Defines suffix of enviroment variables used in this script
+    # Defines suffix of environment variables used in this script
     $suffix = 'PKP';
 
-    # Uses the second part of enviroment variable name as category
+    # Uses the second part of environment variable name as category
     if(preg_match("/^$suffix\_([0-9A-Za-z]+)\_(.+)$/", $k, $m)===1) {
         $m = array_map(function($v) {
             return strtolower($v);
@@ -34,7 +34,7 @@ foreach (glob("/run/secrets/PKP*") as $filename) {
     }
 }
 
-# Creates config template based on sorted enviroment variable
+# Creates config template based on sorted envirnoment variable
 $config_text = <<<CONFIG
 <?php exit(); // DO NOT DELETE ?>\n\n
 CONFIG;
