@@ -1,5 +1,9 @@
 # OJS Docker image
 
+[![License](https://img.shields.io/github/license/teic/docker-pkp-ojs.svg)](https://github.com/TEIC/docker-pkp-ojs/blob/3.2.0/LICENSE.md)
+[![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/teic/docker-pkp-ojs.svg)](https://hub.docker.com/r/teic/docker-pkp-ojs/)
+[![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/teic/docker-pkp-ojs.svg)](https://hub.docker.com/r/teic/docker-pkp-ojs/)
+
 Open Journal Systems (OJS) is a journal management and publishing system that has been developed by the Public Knowledge Project through its federally funded efforts to expand and improve access to research.
 
 Check out its [creators](https://pkp.sfu.ca) and its official [website](https://pkp.sfu.ca/ojs).
