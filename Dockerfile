@@ -25,7 +25,8 @@ RUN mv ${TMP_DIR}/config-creator.php /bin/config-creator \
     && docker-php-ext-install mysqli pdo pdo_mysql gettext \
     && echo "error_log=/dev/stderr" > $PHP_INI_DIR/conf.d/error.ini \
     && echo "post_max_size=$PHP_POST_MAX_SIZE" > $PHP_INI_DIR/conf.d/ojs-settings.ini \
-    && echo "upload_max_filesize=$PHP_UPLOAD_MAX_FILESIZE" >> $PHP_INI_DIR/conf.d/ojs-settings.ini
+    && echo "upload_max_filesize=$PHP_UPLOAD_MAX_FILESIZE" >> $PHP_INI_DIR/conf.d/ojs-settings.ini \
+    && rm ${APP_DIR}/config.inc.php
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 CMD [ "apache2ctl", "-DFOREGROUND" ]
