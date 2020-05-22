@@ -11,15 +11,20 @@ Check out its [creators](https://pkp.sfu.ca) and its official [website](https://
 This particular Docker image is based on [arturluizbr/docker-pkp-ojs](https://github.com/arturluizbr/docker-pkp-ojs) but enhanced for running behind an SSL terminating proxy and for managing Docker secrets. 
 
 
-## Docker Compose
+## How to use this image
 
-For this method you'll need to have docker-compose installed on your system. Check [here](https://docs.docker.com/compose/install/) how to install docker-compose.
+You can run the OJS container and service like so:
 
-Steps:
-- Create a `docker-compose.yml` file with contents below
-- Run `docker-compose up`.
+```bash
+docker run -d -e PKP_DATABASE_HOST=ojsdb teic/docker-pkp-ojs
+```
 
-Then your service will be available on [```http://localhost:8181/```](http://localhost:8181/).
+This assumes you've already launched a suitable MySQL or MariaDB database container with the name `osjdb`.
+
+### … via `docker stack deploy` or `docker-compose`
+
+Example `stack.yml` for `docker-pkp-ojs`:
+
 ```yml
 # docker-compose.yml
 version: "3.6"
@@ -50,30 +55,32 @@ volumes:
   db_data:
 ```
 
+Run `docker stack deploy -c stack.yml docker-pkp-ojs` (or `docker-compose -f stack.yml up`), wait for it to initialize completely, and visit `http://localhost:8181/`.
 
-## Environment Variables
+
+### Environment Variables
 
 Basically all variables inside config.inc.php can be overriden by passing the respective environment variable to the docker `run` command.
 
 Check the full list of environment variables and their description [here](ojs.config.env).
 
 
-## Docker Secrets
+### Docker Secrets
 
 TODO
 
 
-## Persistent Volumes
+### Persistent Data
 
 TODO
 
 
-## OJS Tools
+### OJS Tools
 
 TODO
 
 
-## Upgrading
+### Upgrading
 
 Warning: **THIS PROCEDURE WAS NOT TESTED**
 
@@ -85,7 +92,7 @@ Steps:
 - Run the official upgrade tool from OJS (```php -c $PHP_INI_DIR tools/upgrade.php upgrade```);
 
 
-## Using your own version of OJS
+### Using your own version of OJS
 
 To use your custom version of OJS, update the following ARGs when buiding this image.
 
