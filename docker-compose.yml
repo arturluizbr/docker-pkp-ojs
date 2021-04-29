@@ -4,7 +4,7 @@ services:
     build:
       context: .
       args:
-        tag_name: "ojs-3_1_1-4"
+        tag_name: "ojs-3_3_0-5"
         repo_url: "https://github.com/pkp/ojs.git"
     ports: 
       - 8181:80
